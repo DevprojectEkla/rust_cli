@@ -1,0 +1,25 @@
+mod choice;
+mod cli_utils;
+use choice::Choice;
+
+
+
+
+fn main() {
+
+let mut choix = Choice::new();
+choix.question = "would you like to create a new project?".to_string();
+if choix.yes_or_no_loop() {
+    choix.question = "select a 3 digit number".to_string();
+    choix.check_pattern_loop(r"^\d{3}");
+    choix.question = "select a file".to_string();
+    choix.choose_file_loop();
+    choix.question = "select a directory".to_string();
+    choix.choose_dir_loop();
+    println!("thanks and goodbye !")
+
+} else {
+        println!("never mind")
+}
+
+    }
