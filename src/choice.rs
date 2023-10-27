@@ -66,7 +66,7 @@ fn check_exit(&mut self, input:String) -> bool {
 }
 
 fn display_question(&mut self) {
-text(format!("{}\r\n",self.question).as_str());
+print_c_no_nl(format!("{}\r\n",self.question).as_str(),WHITE);
     print_c_no_nl(format!("{}", self.prompt).as_str(),WHITE);
     io::stdout().flush().expect("failed to flush")
 }
@@ -126,7 +126,7 @@ pub fn check_pattern_loop(&mut self, pattern: &str) -> String {
 return input
             },
             false => {
-                error(format!("the pattern {} is required for this input", pattern).as_str());
+                warn(format!("the pattern {} is required for this input", pattern).as_str());
                 info(format!("input:{}",input).as_str());
                 continue
 
@@ -232,4 +232,29 @@ pub fn choose_dir_loop(&mut self)
 
 
 }//Impl
- 
+
+#[test]
+fn check_pattern_test(){
+let mut choix = Choice::new();
+choix.question = "taper un nom commençant par 3 chiffres:".to_string();
+let test = choix.check_pattern_loop(r"^\d{3}");
+let input = choix.user_input;
+assert_eq!(test,input);
+}
+
+#[test]
+fn yes_or_no_loop_test_no() {
+let mut choix = Choice::new();
+
+choix.question = "Paris est la capital du Brésil ?".to_string();
+let test = choix.yes_or_no_loop();
+assert_eq!(test, false)
+}
+#[test]
+fn yes_or_no_loop_test_yes() {
+let mut choix = Choice::new();
+
+choix.question = "Paris est la capital de la France ?".to_string();
+let test = choix.yes_or_no_loop();
+assert_eq!(test, true)
+}

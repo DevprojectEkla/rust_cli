@@ -7,8 +7,12 @@ edition = "2021"
 [lib]
 name = "rust_cli"
 #this allows to compile a .so file which is needed to work with C or python 
-crate-type = ["cdylib"]
+# crate-type = ["cdylib"]
 
+#use this for integration testing, it loads tests/name_test.rs but i cannot figure out how to import my crate choice
+# [[test]]
+# name="choice_tests"
+# args = ["--nocapture --test-threads=1"]
 
 [dependencies]
 regex = "1.10.2"

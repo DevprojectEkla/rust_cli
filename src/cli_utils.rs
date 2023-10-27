@@ -45,3 +45,14 @@ pub fn success(string:&str){
 pub fn text(string:&str){
     print_c(string, WHITE)
 }
+
+pub fn print_results(results: &Vec<String>, msg_found: &str, msg_notfound: &str) {
+    if !results.is_empty() {
+        print_c(msg_found, CYAN);
+        for (idx, result) in results.iter().enumerate() {
+            print_c(&format!("{}. {}", idx + 1, result), GREEN);
+        }
+    } else {
+        print_c(msg_notfound, RED);
+    }
+}

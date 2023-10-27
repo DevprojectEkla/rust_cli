@@ -1,11 +1,13 @@
 //to see println messages add this option: cargo test -- --nocapture
-use super::choice::Choice;
+//consider using also cargo test -- --test-threads=1 to have input one after another
+use crate::choice::Choice;
 #[test]
 fn check_pattern_test(){
 let mut choix = Choice::new();
 choix.question = "taper un nom commençant par 3 chiffres:".to_string();
 let test = choix.check_pattern_loop(r"^\d{3}");
-assert_eq!(test, )
+let input = choix.user_input.trim().to_string();
+assert_eq!(test,input);
 }
 
 #[test]

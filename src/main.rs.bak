@@ -6,6 +6,12 @@ use choice::Choice;
 
 
 fn main() {
+let choix2 = Choice::new();
+let mut x: i8 = 3;
+ x += 3;
+println!("{}",x);
+
+
 
 let mut choix = Choice::new();
 choix.question = "would you like to create a new project?".to_string();
